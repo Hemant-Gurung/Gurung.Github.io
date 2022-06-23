@@ -1,1 +1,0 @@
-# Gurung.github.io
