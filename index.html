@@ -66,6 +66,16 @@
                 </div>
                 <!-- Portfolio Grid Items-->
                 <div class="row justify-content-center">
+
+                    <!-- Portfolio Item 5-->
+                    <div class="col-md-6 col-lg-4 mb-5 mb-md-0">
+                        <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal5">
+                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                            </div>
+                            <img class="img-fluid" src="assets/img/portfolio/Chip-8Emu.png" alt="..." />
+                        </div>
+                    </div>
                     <!-- Portfolio Item 1-->
                     <div class="col-md-6 col-lg-4 mb-5">
                         <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal1">
@@ -73,6 +83,7 @@
                                 <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
                             <img class="img-fluid" src="assets/img/portfolio/Dual-Rastizer.png" alt="..." />
+            
                         </div>
                     </div>
                     <!-- Portfolio Item 2-->
@@ -102,15 +113,7 @@
                             <img class="img-fluid" src="assets/img/portfolio/HLSL.png" alt="..." />
                         </div>
                     </div>
-                    <!-- Portfolio Item 5-->
-                    <div class="col-md-6 col-lg-4 mb-5 mb-md-0">
-                        <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal5">
-                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                                <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
-                            </div>
-                            <img class="img-fluid" src="assets/img/portfolio/DodgeBall.png" alt="..." />
-                        </div>
-                    </div>
+                    
                     <!-- Portfolio Item 6-->
                     <div class="col-md-6 col-lg-4">
                         <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal6">
@@ -318,6 +321,7 @@
                                 <div class="col-lg-8">
                                     <!-- Portfolio Modal - Title-->
                                     <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Dual-Rasterizer</h2>
+                                   
                                     <!-- Icon Divider-->
                                     <div class="divider-custom">
                                         <div class="divider-custom-line"></div>
@@ -474,7 +478,7 @@
                             <div class="row justify-content-center">
                                 <div class="col-lg-8">
                                     <!-- Portfolio Modal - Title-->
-                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">DodgeBattle</h2>
+                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Chip8 Emulator</h2>
                                     <!-- Icon Divider-->
                                     <div class="divider-custom">
                                         <div class="divider-custom-line"></div>
@@ -482,15 +486,71 @@
                                         <div class="divider-custom-line"></div>
                                     </div>
                                     <!-- Portfolio Modal - Image-->
-                                    <img class="img-fluid rounded mb-5" src="assets/img/portfolio/DodgeBall.gif" alt="..." />
+                                    <img class="img-fluid rounded mb-5" src="assets/img/portfolio/Chip-8.gif" alt="..." />
                                     <!-- Portfolio Modal - Text-->
-                                    <p class="mb-4">
-                                       DodgeBattle is a game that is made using overlord engine where we had to write the main function like parsing the files, 
-                                       reading bones, makeing animations, making the game mesh, colliders,joints etc. This helped me gain a vast knowledge on 
-                                       how the games actually bring everything together in one place, how the skinning is done in software and in hardware, how 
-                                       texture is read and applied etc. 
-                                       <a href="https://github.com/Hemant-Gurung/The-DodgeBattle"> see the source code</a>
+                                        <p class="mb-4" style="text-align:left" >
+                                         What exactly is an emulator? An emulator is a type of interpreter that 
+                                         reads the original instructions written in machine code and compiled for
+                                         the target computer, interprets them, and then replaces the functionality
+                                          of the target machine on the host machine.
                                         </p>
+                                        <p class="mb-4" style="text-align:left">
+                                          Chip-8 was created by RCA engineer Joe Weisbecker in 1970 COSMAC VIP microcomputer. It was intended
+                                          as a simpler way to mae small programs and games for the computer.
+                                        </p>
+                                          There are certain components that need to be understood before understanding how chip-8 works.
+                                          -> 16 8-Bit Registers:
+                                         All the operation on a CPU is done using registers.
+
+                                         <p class="mb-4" style="text-align:left">
+                                         -> 40896 Bytes of Memory
+                                          As registor space is small we need memory.
+                                          This space is segemented into three sections:
+                                          : some reserved for CHIP-8 interpreter.
+                                          : some reserved for 16 built-in characters( 0 - F)
+                                          : some memory where instruction from ROM will be stored at 0x200,
+                                           and after that remaing space will be free to use.
+                                         </p>
+                                         <p class="mb-4" style="text-align:left">
+                                           ->16-bit Index Register
+                                            Special register used to store memory addressed for use in operations.
+                                            why 16? because it used 0xFFF which is too big for 8-bit register.
+                                            </p> 
+                                            <p class="mb-4" style="text-align:left">   
+                                           -> 16-bit Program Counter
+                                           It keeps track of which instruction to execute next.
+                                            </p>
+                                           -> 16-Level stack
+                                           It keeps track of order of execution when it calls into function.It can hold 16 different
+                                           Program counter.
+
+                                           <p class="mb-4" style="text-align:left">
+                                           -> 8-bit stack pointer
+                                           It is used to keep track of where in memory the CPU is executing. It tells us in where in the 16-levels of stack out most 
+                                           recent value was placed.
+                                           </p>
+                                           <p class="mb-4" style="text-align:left">
+                                           ->8-bit DelayTimer:
+                                           Timer used for timing.If there is a value it will decrement at a rate of 60Hz else it will stay zero.
+                                           </p>
+                                           <p class="mb-4" style="text-align:left">
+                                           -> 8-bit Sound Timer
+                                           -> Input Keys
+                                           </p>
+
+                                           <p class="mb-4" style="text-align:left">
+                                           -> Display Memory
+                                           It has additional memory buffer used for storing the graphics to display.
+                                           Which is 64 pixels wide and 32 pixels high. Each pixel is either on or off. So, Only two color can be 
+                                           represented.
+                                           </p>
+
+                                           <p class="mb-4" style="text-align:left">
+                                           I have used SDL to display the graphics.
+                                           </p>
+
+                                           <a href="https://github.com/Hemant-Gurung/CHIP-8.git"> see the source code</a>
+                                        
                                     <button class="btn btn-primary" data-bs-dismiss="modal">
                                         <i class="fas fa-xmark fa-fw"></i>
                                         Close Window
